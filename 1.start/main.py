@@ -1,4 +1,4 @@
-from PySide6.QtWidgets import QApplication, QWidget, QPushButton, QMainWindow
+from PySide6.QtWidgets import QApplication,  QPushButton, QMainWindow
 import sys
 
 
