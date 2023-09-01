@@ -13,13 +13,16 @@ class MainWindow(QMainWindow):
 
         self.text = QLineEdit()
         self.text.textChanged.connect(self.on_text_change)
-
+        self.text.returnPressed.connect(self.on_enter)
         self.setCentralWidget(self.text)
 
         self.setMinimumSize(QSize(380, 220))
 
     def on_text_change(self, value):
         self.setWindowTitle(value)
+
+    def on_enter(self):
+        print(self.text.text())
 
 
 if __name__ == "__main__":
