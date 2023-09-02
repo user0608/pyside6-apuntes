@@ -12,7 +12,6 @@ class MainWindows(QMainWindow):
     def __init__(self):
         super().__init__()
         grid = QGridLayout()
-        grid = QGridLayout()
         grid.addWidget(ColorBox("orange"), 0, 0)
         grid.addWidget(ColorBox("purple"), 1, 1)
         grid.addWidget(ColorBox("magenta"), 2, 2)
