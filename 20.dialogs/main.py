@@ -1,5 +1,33 @@
-from PySide6.QtWidgets import QApplication,  QMainWindow, QPushButton, QDialog
+from PySide6.QtWidgets import QApplication,  QMainWindow, QPushButton, QDialog, QVBoxLayout, QLabel, QDialogButtonBox
 import sys
+
+
+class Dialog(QDialog):
+    def __init__(self):
+        super().__init__()
+        self.initialize()
+
+    def initialize(self):
+
+        layout = QVBoxLayout()
+        layout.addWidget(QLabel("Dialogo de prueba"))
+
+        # buttonOK = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok)
+        # buttonCancel = QDialogButtonBox(QDialogButtonBox.StandardButton.Cancel)
+
+        # layout.addWidget(buttonOK)
+        # layout.addWidget(buttonCancel)
+
+        buttons = QDialogButtonBox(
+            QDialogButtonBox.StandardButton.Ok | QDialogButtonBox.StandardButton.Cancel)
+        layout.addWidget(buttons)
+
+        buttons.accepted.connect(self.accept)
+        buttons.rejected.connect(self.reject)
+
+        self.setLayout(layout)
+        self.setWindowTitle("Soy un dialog")
+        self.resize(240, 120)
 
 
 class MainWindow(QMainWindow):
@@ -8,18 +36,21 @@ class MainWindow(QMainWindow):
         self.initialize()
 
     def initialize(self):
-        self.resize(480, 320)
 
         self.button = QPushButton("Show Dialog")
         self.button.clicked.connect(self.on_click)
 
         self.setCentralWidget(self.button)
+        self.resize(480, 320)
 
     def on_click(self):
-        dialog = QDialog()
-        dialog.setWindowTitle("Soy un dialog")
-        dialog.exec()
-        pass
+        dialog = Dialog()
+        result = dialog.exec()
+        print(result)
+        if result:
+            print("Acepted")
+        else:
+            print("Rejected")
 
 
 if __name__ == "__main__":
