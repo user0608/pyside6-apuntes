@@ -14,6 +14,7 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("Hola Mundo")
         self.setMinimumSize(QSize(620, 480))
         self.setMaximumSize(QSize(820, 580))
+        # self.resize(620,480) # inicial
         # self.setFixedSize(QSize(820, 580)) # no redimensionale
 
 
