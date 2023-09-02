@@ -1,5 +1,6 @@
 from PySide6.QtWidgets import QApplication,  QMainWindow, QPushButton, QMessageBox
 from PySide6.QtGui import QIcon
+from PySide6.QtCore import QTranslator, QLibraryInfo
 from pathlib import Path
 import sys
 
@@ -38,6 +39,15 @@ class MainWindow(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+
+    traductor = QTranslator(app)
+
+    traducciones = QLibraryInfo.path(
+        QLibraryInfo.LibraryPath.TranslationsPath)
+    traductor.load("qt_es", traducciones)
+
+    app.installTranslator(traductor)
+
     window = MainWindow()
     window.show()
     sys.exit(app.exec())
