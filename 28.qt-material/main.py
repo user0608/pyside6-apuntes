@@ -6,6 +6,7 @@ from PySide6.QtWidgets import (
 )
 from PySide6.QtCore import Qt
 import sys
+from qt_material import apply_stylesheet
 
 
 class MainWindows(QMainWindow):
@@ -40,7 +41,7 @@ class MainWindows(QMainWindow):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    app.setStyle("Fusion")
+    apply_stylesheet(app, 'light_red.xml')
     windows = MainWindows()
     windows.show()
     sys.exit(app.exec())
