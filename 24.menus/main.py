@@ -1,5 +1,5 @@
-from PySide6.QtWidgets import QApplication, QMainWindow
-from PySide6.QtGui import QIcon
+from PySide6.QtWidgets import QApplication, QMainWindow, QMessageBox, QStatusBar
+from PySide6.QtGui import QIcon, QAction
 from PySide6.QtCore import QTranslator, QLibraryInfo
 from pathlib import Path
 import sys
@@ -18,6 +18,8 @@ class MainWindow(QMainWindow):
         self.resize(480, 320)
         self.setWindowIcon(QIcon(ensurePath("gato.jpg")))
 
+        # self.setStatusBar(QStatusBar(self)) # actiba los estatus tip
+
         menubar = self.menuBar()
         menu = menubar.addMenu("&Menu")
         menu.addAction("&Prueba")
@@ -28,6 +30,21 @@ class MainWindow(QMainWindow):
         menu.addSeparator()
 
         menu.addAction(QIcon(ensurePath("exit.png")), "Exit", self.close)
+
+        menu_ayuda = menubar.addMenu('Ayuda')
+        action_info = QAction(
+            QIcon(ensurePath("gato.jpg")), "Informacion", self)
+        action_info.setShortcut("ctrl+i")
+        action_info.triggered.connect(self.mostrar_info)
+
+        # es nesesario self.setStatusBar(QStatusBar(self)
+        action_info.setStatusTip("muestra informacion")
+
+        menu_ayuda.addAction(action_info)
+
+    def mostrar_info(self):
+        QMessageBox.information(self, "Informacion",
+                                "Esto es un texto informativo")
 
 
 if __name__ == "__main__":
